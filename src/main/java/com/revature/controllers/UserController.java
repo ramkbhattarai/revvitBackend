@@ -2,6 +2,9 @@ package com.revature.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,9 +49,9 @@ public class UserController {
 		return ResponseEntity.status(HttpStatus.OK).body(u);
 	}
 	
-	@PostMapping("/user")
+	@PostMapping("/signup")
 	@ResponseBody
-	public ResponseEntity<User> save(@RequestBody User u) {
+	public ResponseEntity<User> signup(@RequestBody User u) {
 		return ResponseEntity.ok(us.save(u));
 	}
 	
@@ -58,11 +61,17 @@ public class UserController {
 		return ResponseEntity.ok(us.update(u));
 	}
 	
-	@PatchMapping("/login")
+	@PostMapping("/login")
 	@ResponseBody
 	public ResponseEntity<User> login(@RequestBody User u) {
 		return ResponseEntity.ok(us.login(u));
 	}
-		
-
+	
+	@PostMapping("/logout")
+	@ResponseBody
+	public ResponseEntity<Boolean> logout(HttpServletRequest request) {
+		HttpSession httpSession = request.getSession();
+        httpSession.invalidate();
+        return ResponseEntity.ok(new Boolean("true"));
+	}
 }

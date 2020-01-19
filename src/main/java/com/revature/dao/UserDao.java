@@ -80,5 +80,7 @@ public class UserDao implements IUserDao{
         Query<User> q = session.createQuery(query);
         return q.getSingleResult();
 	}
+	
+
 
 }
