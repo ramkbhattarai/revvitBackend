@@ -8,6 +8,7 @@ import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -62,8 +63,22 @@ public class UserDao implements IUserDao{
 	@Transactional
 	public boolean update(User u) {
 		Session s = sf.getCurrentSession();
-		s.update(u);
+		s.merge(u);
 		return true;
+	}
+	
+	@Transactional
+	public User login(String username, String password) {
+		Session session = sf.getCurrentSession();
+		CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<User> query = builder.createQuery(User.class);
+        Root<User> root = query.from(User.class);
+        query.select(root).where(
+        		builder.equal(root.get("username"), username),
+        		builder.equal(root.get("password"), password)
+        		);
+        Query<User> q = session.createQuery(query);
+        return q.getSingleResult();
 	}
 
 }

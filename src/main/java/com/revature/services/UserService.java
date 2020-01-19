@@ -34,4 +34,8 @@ public class UserService {
 	public boolean update(User u) {
 		 return dao.update(u);
 	}
+	
+	public User login(User u) {
+		return dao.login(u.getUsername(), u.getPassword());
+	}
 }

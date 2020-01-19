@@ -57,6 +57,12 @@ public class UserController {
 	public ResponseEntity<Boolean> update(@RequestBody User u) {
 		return ResponseEntity.ok(us.update(u));
 	}
+	
+	@PatchMapping("/login")
+	@ResponseBody
+	public ResponseEntity<User> login(@RequestBody User u) {
+		return ResponseEntity.ok(us.login(u));
+	}
 		
 
 }

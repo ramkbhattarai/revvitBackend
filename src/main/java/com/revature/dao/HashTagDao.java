@@ -61,7 +61,7 @@ public class HashTagDao implements IHashTag{
 	@Transactional
 	public boolean update(HashTag h) {
 		Session s = sf.getCurrentSession();
-		s.update(h);
+		s.merge(h);
 		return true;
 	}
 

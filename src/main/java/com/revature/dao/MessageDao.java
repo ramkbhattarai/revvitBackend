@@ -61,7 +61,7 @@ public class MessageDao implements IMessage{
 	@Transactional
 	public boolean update(Message m) {
 		Session s = sf.getCurrentSession();
-		s.update(m);
+		s.merge(m);
 		return true;
 	}
 
