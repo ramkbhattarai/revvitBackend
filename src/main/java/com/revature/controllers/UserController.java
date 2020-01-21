@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -49,7 +49,7 @@ public class UserController {
 		return ResponseEntity.status(HttpStatus.OK).body(u);
 	}
 	
-	@PostMapping("/signup")
+	@PostMapping("/register")
 	@ResponseBody
 	public ResponseEntity<User> signup(@RequestBody User u) {
 		return ResponseEntity.ok(us.save(u));
@@ -73,5 +73,17 @@ public class UserController {
 		HttpSession httpSession = request.getSession();
         httpSession.invalidate();
         return ResponseEntity.ok(new Boolean("true"));
+	}
+	
+	@GetMapping("/usersFollowers")
+	@ResponseBody
+	public List<User> getAllFollowers(User u){
+		return us.getAllFollowers(u);
+	}
+	
+	@GetMapping("/usersFollowing")
+	@ResponseBody
+	public List<User> getAllGuruUserIsFollowing(User u){
+		return us.getAllGuruUserIsFollowing(u);
 	}
 }

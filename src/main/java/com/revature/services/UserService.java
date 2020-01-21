@@ -38,4 +38,12 @@ public class UserService {
 	public User login(User u) {
 		return dao.login(u.getUsername(), u.getPassword());
 	}
+	
+	public List<User> getAllFollowers(User u){
+		return dao.getAllFollowers(u);
+	}
+	
+	public List<User> getAllGuruUserIsFollowing(User u){
+		return dao.getAllGuruUserIsFollowing(u);
+	}
 }

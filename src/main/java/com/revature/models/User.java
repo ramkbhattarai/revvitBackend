@@ -87,17 +87,17 @@ public class User implements Serializable{
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
 	        name = "user_followers", 
-	        joinColumns = { @JoinColumn(name = "Guru_id", referencedColumnName = "user_id") }, 
-	        inverseJoinColumns = { @JoinColumn(name = "Followers_id", referencedColumnName = "user_id") }
+	        joinColumns = { @JoinColumn(name = "guru_id", referencedColumnName = "user_id") }, 
+	        inverseJoinColumns = { @JoinColumn(name = "followers_id", referencedColumnName = "user_id") }
 	    )
 	private List<User> followers = new ArrayList<>();
 	
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
-	        name = "user_followering", 
-	        joinColumns = { @JoinColumn(name = "Followers_id", referencedColumnName = "user_id") }, 
-	        inverseJoinColumns = { @JoinColumn(name = "Guru_id", referencedColumnName = "user_id") }
+	        name = "user_following", 
+	        joinColumns = { @JoinColumn(name = "followers_id", referencedColumnName = "user_id") }, 
+	        inverseJoinColumns = { @JoinColumn(name = "guru_id", referencedColumnName = "user_id") }
 	    )
 	private List<User> following = new ArrayList<>();
 

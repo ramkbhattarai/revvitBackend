@@ -81,6 +81,22 @@ public class UserDao implements IUserDao{
         return q.getSingleResult();
 	}
 	
+	@Transactional
+	public List<User> getAllFollowers(User u){
+		Session session = sf.getCurrentSession();
+		return session.createQuery("from user_followers where guru_id='"
+				+u.getId()+"'", User.class).list();
+		
+	}
+	
 
+	@Transactional
+	public List<User> getAllGuruUserIsFollowing(User u){
+		Session session = sf.getCurrentSession();
+		return session.createQuery("from user_following where followers_id='"
+				+u.getId()+"'", User.class).list();
+		
+	}
+	
 
 }

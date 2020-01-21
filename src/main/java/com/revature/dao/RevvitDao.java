@@ -54,9 +54,6 @@ public class RevvitDao implements IRevvitDao{
 	@Transactional
 	public Revvit save(Revvit r) {
 		Session s = sf.getCurrentSession();
-//		if(r.getText().contains("#")) {
-//			HashTag h = new HashTag()
-//		}
 		Integer i = (Integer) s.save(r);
 		 return findById(i);
 	}

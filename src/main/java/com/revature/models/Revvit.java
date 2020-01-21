@@ -73,7 +73,6 @@ public class Revvit implements Serializable{
 
 	public Revvit() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 
