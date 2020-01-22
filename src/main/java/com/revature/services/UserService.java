@@ -15,34 +15,34 @@ import com.revature.models.User;
 @Service
 public class UserService {
 	
-	
-	private UserDao dao = new UserDao() ;
+	@Autowired
+	private UserDao userDao;// = new UserDao() ;
 	
 	public List<User> findAll(){
-		return dao.findAll();
+		return userDao.findAll();
 	}
 	
 	public User findById(int id) {
-		return dao.findById(id);
+		return userDao.findById(id);
 	}
 	
 	public User save(User u) {
-		return dao.save(u);
+		return userDao.save(u);
 	}
 	
 	public boolean update(User u) {
-		 return dao.update(u);
+		 return userDao.update(u);
 	}
 	
 	public User login(User u) {
-		return dao.login(u.getUsername(), u.getPassword());
+		return userDao.login(u.getUsername(), u.getPassword());
 	}
 	
 	public List<User> getAllFollowers(User u){
-		return dao.getAllFollowers(u);
+		return userDao.getAllFollowers(u);
 	}
 	
 	public List<User> getAllGuruUserIsFollowing(User u){
-		return dao.getAllGuruUserIsFollowing(u);
+		return userDao.getAllGuruUserIsFollowing(u);
 	}
 }

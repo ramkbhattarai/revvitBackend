@@ -27,20 +27,20 @@ import com.revature.services.UserService;
 @Controller
 public class UserController {
 	
-	
-	private UserService us = new UserService();
+	@Autowired
+	private UserService userService;// = new UserService();
 	
 	@RequestMapping(value = "/users", method = RequestMethod.GET)
 	@ResponseBody 
 	public List<User> findAll() {
-		return us.findAll();
+		return userService.findAll();
 		 
 	}
 	
 	@GetMapping("/users/{id}")
 	@ResponseBody
 	public ResponseEntity<User> findById(@PathVariable("id") int id) {
-		List<User> list = us.findAll();
+		List<User> list = userService.findAll();
 		if(id >= list.size()) {
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 		}
@@ -50,22 +50,22 @@ public class UserController {
 		return ResponseEntity.status(HttpStatus.OK).body(u);
 	}
 	
-	@PostMapping("/register")
+	@PostMapping("/users")
 	@ResponseBody
 	public ResponseEntity<User> signup(@RequestBody User u) {
-		return ResponseEntity.ok(us.save(u));
+		return ResponseEntity.ok(userService.save(u));
 	}
 	
 	@PatchMapping("/user")
 	@ResponseBody
 	public ResponseEntity<Boolean> update(@RequestBody User u) {
-		return ResponseEntity.ok(us.update(u));
+		return ResponseEntity.ok(userService.update(u));
 	}
 	
 	@PostMapping("/users/login")
 	@ResponseBody
 	public ResponseEntity<User> login(@RequestBody User u) {
-		return ResponseEntity.ok(us.login(u));
+		return ResponseEntity.ok(userService.login(u));
 	}
 	
 	@PostMapping("/logout")
@@ -79,12 +79,12 @@ public class UserController {
 	@GetMapping("/usersFollowers")
 	@ResponseBody
 	public List<User> getAllFollowers(User u){
-		return us.getAllFollowers(u);
+		return userService.getAllFollowers(u);
 	}
 	
 	@GetMapping("/usersFollowing")
 	@ResponseBody
 	public List<User> getAllGuruUserIsFollowing(User u){
-		return us.getAllGuruUserIsFollowing(u);
+		return userService.getAllGuruUserIsFollowing(u);
 	}
 }

@@ -11,6 +11,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Propagation;
@@ -22,12 +23,12 @@ import com.revature.models.User;
 public class UserDao implements IUserDao{
 	
 	@Autowired
-	private SessionFactory sf;
+	private SessionFactory sessionFactory;
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public List<User> findAll() {
-		Session s = sf.getCurrentSession();
+		Session s = sessionFactory.getCurrentSession();
 		CriteriaQuery<User> query = s.getCriteriaBuilder().createQuery(User.class);
 		Root<User> root = query.from(User.class);
 		query.select(root);
@@ -40,7 +41,7 @@ public class UserDao implements IUserDao{
 	@Override
 	@Transactional
 	public User findById(int id) {
-		Session session = sf.getCurrentSession();
+		Session session = sessionFactory.getCurrentSession();
 		CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<User> query = builder.createQuery(User.class);
         Root<User> root = query.from(User.class);
@@ -53,7 +54,8 @@ public class UserDao implements IUserDao{
 	@Override
 	@Transactional
 	public User save(User u) {
-		Session s = sf.getCurrentSession();
+		System.out.println(sessionFactory);
+		Session s = sessionFactory.getCurrentSession();
 		Integer i = (Integer) s.save(u);
 		return findById(i); 
 	}
@@ -61,14 +63,14 @@ public class UserDao implements IUserDao{
 	@Override
 	@Transactional
 	public boolean update(User u) {
-		Session s = sf.getCurrentSession();
+		Session s = sessionFactory.getCurrentSession();
 		s.merge(u);
 		return true;
 	}
 	
 	@Transactional
 	public User login(String username, String password) {
-		Session session = sf.getCurrentSession();
+		Session session = sessionFactory.getCurrentSession();
 		CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<User> query = builder.createQuery(User.class);
         Root<User> root = query.from(User.class);
@@ -82,7 +84,7 @@ public class UserDao implements IUserDao{
 	
 	@Transactional
 	public List<User> getAllFollowers(User u){
-		Session session = sf.getCurrentSession();
+		Session session = sessionFactory.getCurrentSession();
 		return session.createQuery("from user_followers where guru_id='"
 				+u.getId()+"'", User.class).list();
 		
@@ -91,7 +93,7 @@ public class UserDao implements IUserDao{
 
 	@Transactional
 	public List<User> getAllGuruUserIsFollowing(User u){
-		Session session = sf.getCurrentSession();
+		Session session = sessionFactory.getCurrentSession();
 		return session.createQuery("from user_following where followers_id='"
 				+u.getId()+"'", User.class).list();
 		
