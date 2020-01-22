@@ -10,16 +10,15 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.revature.dao.HashTagDao;
 import com.revature.dao.IHashTag;
-
+import com.revature.dao.UserDao;
 import com.revature.models.HashTag;
 
 @Service
-@EnableTransactionManagement(proxyTargetClass = true)
 public class HashTagService {
 	
+
 	
-	@Autowired
-	private HashTagDao dao; 
+	private HashTagDao dao = new HashTagDao(); 
 	
 	public List<HashTag> findAll(){
 		return dao.findAll();

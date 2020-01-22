@@ -17,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.models.Message;
 @Repository
-@EnableTransactionManagement(proxyTargetClass = true)
 public class MessageDao implements IMessage{
 	
 	@Autowired

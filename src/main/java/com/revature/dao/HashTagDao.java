@@ -17,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.models.HashTag;
 @Repository
-@EnableTransactionManagement(proxyTargetClass = true)
 public class HashTagDao implements IHashTag{
 	
 	@Autowired

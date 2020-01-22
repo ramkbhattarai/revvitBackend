@@ -18,7 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.revature.models.Revvit;
 
 @Repository
-@EnableTransactionManagement(proxyTargetClass = true)
 public class RevvitDao implements IRevvitDao{
 	
 	@Autowired

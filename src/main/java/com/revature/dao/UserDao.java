@@ -19,7 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.revature.models.User;
 
 @Repository
-@EnableTransactionManagement(proxyTargetClass = true)
 public class UserDao implements IUserDao{
 	
 	@Autowired

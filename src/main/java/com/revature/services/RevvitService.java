@@ -8,16 +8,17 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.revature.dao.HashTagDao;
 import com.revature.dao.IRevvitDao;
 import com.revature.dao.RevvitDao;
 import com.revature.models.Revvit;
 
 @Service
-@EnableTransactionManagement(proxyTargetClass = true)
 public class RevvitService {
 	
-	@Autowired
-	private RevvitDao dao; 
+	
+	
+	private RevvitDao dao = new RevvitDao(); 
 	
 	public List<Revvit> findAll(){
 		return dao.findAll();

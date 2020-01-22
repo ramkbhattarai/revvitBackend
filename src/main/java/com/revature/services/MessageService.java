@@ -10,15 +10,14 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.revature.dao.IMessage;
 import com.revature.dao.MessageDao;
+import com.revature.dao.RevvitDao;
 import com.revature.models.Message;
 
 @Service
-@EnableTransactionManagement(proxyTargetClass = true)
 public class MessageService {
 	
 	
-	@Autowired
-	private MessageDao dao;
+	private MessageDao dao = new MessageDao();
 	
 	public List<Message> findAll(){
 		return dao.findAll();

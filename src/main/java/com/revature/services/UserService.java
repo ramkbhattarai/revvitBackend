@@ -13,11 +13,10 @@ import com.revature.dao.UserDao;
 import com.revature.models.User;
 
 @Service
-@EnableTransactionManagement(proxyTargetClass = true)
 public class UserService {
 	
-	@Autowired
-	private UserDao dao;
+	
+	private UserDao dao = new UserDao() ;
 	
 	public List<User> findAll(){
 		return dao.findAll();
