@@ -17,8 +17,8 @@ import com.revature.models.Revvit;
 public class RevvitService {
 	
 	
-	
-	private RevvitDao dao = new RevvitDao(); 
+	@Autowired
+	private RevvitDao dao;// = new RevvitDao(); 
 	
 	public List<Revvit> findAll(){
 		return dao.findAll();

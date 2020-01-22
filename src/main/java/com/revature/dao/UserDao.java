@@ -54,7 +54,6 @@ public class UserDao implements IUserDao{
 	@Override
 	@Transactional
 	public User save(User u) {
-		System.out.println(sessionFactory);
 		Session s = sessionFactory.getCurrentSession();
 		Integer i = (Integer) s.save(u);
 		return findById(i); 

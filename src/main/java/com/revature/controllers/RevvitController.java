@@ -21,8 +21,8 @@ import com.revature.services.RevvitService;
 @Controller
 public class RevvitController {
 	
-	
-	private RevvitService rs = new RevvitService(); 
+	@Autowired
+	private RevvitService rs;// = new RevvitService(); 
 	
 	@GetMapping(value = "/revvits")
 	@ResponseBody 

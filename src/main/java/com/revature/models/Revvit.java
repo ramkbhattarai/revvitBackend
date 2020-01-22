@@ -20,6 +20,8 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 @Entity
 @Table(name="revvits")
@@ -41,6 +43,8 @@ public class Revvit implements Serializable{
 	private byte[] imageUrl;
 		
 	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "author_id")
+	@JsonIgnoreProperties("revvits")
 	private User author;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
@@ -319,7 +323,7 @@ public class Revvit implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Revvit [id=" + id + ", text=" + text + ", imageUrl=" + Arrays.toString(imageUrl) + ", author=" + author
+		return "Revvit [id=" + id + ", text=" + text + ", imageUrl=" + Arrays.toString(imageUrl) + ", author=" + author.getUsername()
 				+ ", likedBy=" + likedBy + ", reRevvitedBy=" + reRevvitedBy + ", hashtags=" + hashtags + "]";
 	}
 	

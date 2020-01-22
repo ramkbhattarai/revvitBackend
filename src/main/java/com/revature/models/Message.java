@@ -167,8 +167,8 @@ public class Message implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Message [id=" + id + ", text=" + text + ", imageUrl=" + Arrays.toString(imageUrl) + ", sender=" + sender
-				+ ", receiver=" + receiver + "]";
+		return "Message [id=" + id + ", text=" + text + ", imageUrl=" + Arrays.toString(imageUrl) + ", sender=" + sender.getUsername()
+				+ ", receiver=" + receiver.getUsername() + "]";
 	}
 	
 	

@@ -19,6 +19,8 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.JoinColumn;
 
 
@@ -54,6 +56,7 @@ public class User implements Serializable{
 	private byte[] profilePicture;
 	
 	@OneToMany(mappedBy="author", fetch = FetchType.EAGER)
+	@JsonIgnoreProperties("author")
 	private List<Revvit> revvits = new ArrayList<>();
 	
 	
