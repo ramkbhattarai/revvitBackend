@@ -43,7 +43,7 @@ public class RevvitController {
 		return ResponseEntity.status(HttpStatus.OK).body(r);
 	}
 	
-	@PostMapping("/articles/")
+	@PostMapping("/saveRevvit")
 	@ResponseBody
 	public ResponseEntity<Revvit> save(@RequestBody Revvit r) {
 		return ResponseEntity.ok(revvitService.save(r));

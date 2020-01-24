@@ -43,7 +43,7 @@ public class HashTagController {
 		return ResponseEntity.status(HttpStatus.OK).body(h);
 	}
 	
-	@PostMapping("/hashTag")
+	@PostMapping("/createHashTag")
 	@ResponseBody
 	public ResponseEntity<HashTag> save(@RequestBody HashTag h) {
 		return ResponseEntity.ok(hs.save(h));

@@ -80,9 +80,8 @@ public class UserDao implements IUserDao{
         		builder.equal(root.get("password"), password)
         		);
         Query<User> q = session.createQuery(query);
-        User u = q.getSingleResult();
-        System.out.println(u);
-        return u;
+        return q.getSingleResult();
+        
 		
 		
 //		Session session = sessionFactory.getCurrentSession();
