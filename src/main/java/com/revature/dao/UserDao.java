@@ -68,25 +68,25 @@ public class UserDao implements IUserDao{
 	}
 	
 	@Transactional
-	public User login(String email, String password) {
-//		System.out.println("inside login method");
-//		Session session = sessionFactory.getCurrentSession();
-//		CriteriaBuilder builder = session.getCriteriaBuilder();
-//        CriteriaQuery<User> query = builder.createQuery(User.class);
-//        Root<User> root = query.from(User.class);
-//        query.select(root).where(
-//        		builder.equal(root.get("username"), username),
-//  
-//        		builder.equal(root.get("password"), password)
-//        		);
-//        Query<User> q = session.createQuery(query);
-//        User u = q.getSingleResult();
-//        System.out.println(u);
-//        return u;
-		
-		
+	public User login(String username, String password) {
+		System.out.println("inside login method");
 		Session session = sessionFactory.getCurrentSession();
-		return (User) session.createQuery("from User where email='"+email+"'"+"and password='"+password+"'", User.class).getSingleResult();
+		CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<User> query = builder.createQuery(User.class);
+        Root<User> root = query.from(User.class);
+        query.select(root).where(
+        		builder.equal(root.get("username"), username),
+  
+        		builder.equal(root.get("password"), password)
+        		);
+        Query<User> q = session.createQuery(query);
+        User u = q.getSingleResult();
+        System.out.println(u);
+        return u;
+		
+		
+//		Session session = sessionFactory.getCurrentSession();
+//		return  session.createQuery("from User where email='"+username+"'"+"and password='"+password+"'", User.class).getSingleResult();
 		
 	}
 	

@@ -50,7 +50,7 @@ public class UserController {
 		return ResponseEntity.status(HttpStatus.OK).body(u);
 	}
 	
-	@PostMapping("/users")
+	@PostMapping("/signup")
 	@ResponseBody
 	public ResponseEntity<User> signup(@RequestBody User u) {
 		return ResponseEntity.ok(userService.save(u));
@@ -62,11 +62,11 @@ public class UserController {
 		return ResponseEntity.ok(userService.update(u));
 	}
 	
-	@PostMapping("/users/login")
+	@PostMapping("/login")
 	@ResponseBody
 	public ResponseEntity<User> login(@RequestBody User u) {
 		//System.out.println(u);
-		return ResponseEntity.ok(userService.login(u.getEmail(), u.getPassword()));
+		return ResponseEntity.ok(userService.login(u.getUsername(), u.getPassword()));
 	}
 	
 	@PostMapping("/logout")

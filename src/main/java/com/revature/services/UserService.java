@@ -34,8 +34,8 @@ public class UserService {
 		 return userDao.update(u);
 	}
 	
-	public User login(String email, String password ) {
-		return userDao.login(email, password);
+	public User login(String username, String password ) {
+		return userDao.login(username, password);
 	}
 	
 	public List<User> getAllFollowers(User u){
