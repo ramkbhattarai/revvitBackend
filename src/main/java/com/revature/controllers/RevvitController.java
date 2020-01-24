@@ -22,18 +22,18 @@ import com.revature.services.RevvitService;
 public class RevvitController {
 	
 	@Autowired
-	private RevvitService rs;// = new RevvitService(); 
+	private RevvitService revvitService;// = new RevvitService(); 
 	
 	@GetMapping(value = "/revvits")
 	@ResponseBody 
 	public List<Revvit> findAll() {
-		return rs.findAll();
+		return revvitService.findAll();
 	}
 	
 	@GetMapping("/revvits/{id}")
 	@ResponseBody
 	public ResponseEntity<Revvit> findById(@PathVariable("id") int id) {
-		List<Revvit> list = rs.findAll();
+		List<Revvit> list = revvitService.findAll();
 		if(id >= list.size()) {
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 		}
@@ -43,16 +43,16 @@ public class RevvitController {
 		return ResponseEntity.status(HttpStatus.OK).body(r);
 	}
 	
-	@PostMapping("/revvit")
+	@PostMapping("/articles/")
 	@ResponseBody
 	public ResponseEntity<Revvit> save(@RequestBody Revvit r) {
-		return ResponseEntity.ok(rs.save(r));
+		return ResponseEntity.ok(revvitService.save(r));
 	}
 	
 	@PatchMapping("/revvit")
 	@ResponseBody
 	public ResponseEntity<Boolean> update(@RequestBody Revvit r) {
-		return ResponseEntity.ok(rs.update(r));
+		return ResponseEntity.ok(revvitService.update(r));
 	}
 
 }

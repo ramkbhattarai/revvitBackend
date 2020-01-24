@@ -65,7 +65,8 @@ public class UserController {
 	@PostMapping("/users/login")
 	@ResponseBody
 	public ResponseEntity<User> login(@RequestBody User u) {
-		return ResponseEntity.ok(userService.login(u));
+		//System.out.println(u);
+		return ResponseEntity.ok(userService.login(u.getEmail(), u.getPassword()));
 	}
 	
 	@PostMapping("/logout")

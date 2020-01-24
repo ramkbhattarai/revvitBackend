@@ -18,22 +18,22 @@ public class RevvitService {
 	
 	
 	@Autowired
-	private RevvitDao dao;// = new RevvitDao(); 
+	private RevvitDao revvitDao;// = new RevvitDao(); 
 	
 	public List<Revvit> findAll(){
-		return dao.findAll();
+		return revvitDao.findAll();
 	}
 	
 	public Revvit findById(int id) {
-		return dao.findById(id);
+		return revvitDao.findById(id);
 	}
 	
 	public Revvit save(Revvit r) {
-		return dao.save(r);
+		return revvitDao.save(r);
 	}
 	
 	public boolean update(Revvit r) {
-		 return dao.update(r);
+		 return revvitDao.update(r);
 	}
 
 }

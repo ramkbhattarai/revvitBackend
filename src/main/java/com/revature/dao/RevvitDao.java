@@ -22,13 +22,12 @@ import com.revature.models.Revvit;
 public class RevvitDao implements IRevvitDao{
 	
 	@Autowired
-	@Qualifier("sessionFactory")
-	private SessionFactory sf;
+	private SessionFactory sessionFactory;
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public List<Revvit> findAll() {
-		Session s = sf.getCurrentSession();
+		Session s = sessionFactory.getCurrentSession();
 		CriteriaQuery<Revvit> query = s.getCriteriaBuilder().createQuery(Revvit.class);
 		Root<Revvit> root = query.from(Revvit.class);
 		query.select(root);
@@ -41,7 +40,7 @@ public class RevvitDao implements IRevvitDao{
 	@Override
 	@Transactional
 	public Revvit findById(int id) {
-		Session session = sf.getCurrentSession();
+		Session session = sessionFactory.getCurrentSession();
 		CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Revvit> query = builder.createQuery(Revvit.class);
         Root<Revvit> root = query.from(Revvit.class);
@@ -54,7 +53,7 @@ public class RevvitDao implements IRevvitDao{
 	@Override
 	@Transactional
 	public Revvit save(Revvit r) {
-		Session s = sf.getCurrentSession();
+		Session s = sessionFactory.getCurrentSession();
 		Integer i = (Integer) s.save(r);
 		 return findById(i);
 	}
@@ -62,7 +61,7 @@ public class RevvitDao implements IRevvitDao{
 	@Override
 	@Transactional
 	public boolean update(Revvit r) {
-		Session s = sf.getCurrentSession();
+		Session s = sessionFactory.getCurrentSession();
 		s.merge(r);
 		return true;
 	}
