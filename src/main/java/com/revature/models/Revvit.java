@@ -74,11 +74,35 @@ public class Revvit implements Serializable{
 	private List<HashTag> hashtags;
 
 	
+	private transient int likecount;
+	
+	private transient int rerevcount;
+	
+	
 	
 
 	public Revvit() {
 		super();
 	}
+
+	
+	
+
+	public Revvit(int id, String text, User author, List<User> likedBy, List<User> reRevvitedBy, List<HashTag> hashtags,
+			int likecount, int rerevcount) {
+		super();
+		this.id = id;
+		this.text = text;
+		this.author = author;
+		this.likedBy = likedBy;
+		this.reRevvitedBy = reRevvitedBy;
+		this.hashtags = hashtags;
+		this.likecount = likecount;
+		this.rerevcount = rerevcount;
+	}
+
+
+
 
 
 
@@ -285,6 +309,34 @@ public class Revvit implements Serializable{
 	public String toString() {
 		return "Revvit [id=" + id + ", text=" + text + ", author=" + author.getFname() + ", likedBy=" + likedBy + ", reRevvitedBy="
 				+ reRevvitedBy + ", hashtags=" + hashtags + "]";
+	}
+
+
+
+
+	public int getRerevcount() {
+		return rerevcount;
+	}
+
+
+
+
+	public void setRerevcount(int rerevcount) {
+		this.rerevcount = rerevcount;
+	}
+
+
+
+
+	public int getLikecount() {
+		return likecount;
+	}
+
+
+
+
+	public void setLikecount(int likecount) {
+		this.likecount = likecount;
 	}
 
 

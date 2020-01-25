@@ -59,6 +59,8 @@ public class User implements Serializable{
 	@Column(name="profilePicture")
 	private byte[] profilePicture;
 	
+	private String photoUrl;
+	
 	@OneToMany(mappedBy="author", fetch = FetchType.EAGER)
 	private List<Revvit> revvits = new ArrayList<>();
 	
@@ -112,6 +114,15 @@ public class User implements Serializable{
 		super();
 	
 	}
+
+	
+
+	public User(String username, String photoUrl) {
+		super();
+		this.username = username;
+		this.photoUrl = photoUrl;
+	}
+
 
 
 	public User(int id, String fname, String lname, String userName, String email, String password,
@@ -257,6 +268,24 @@ public class User implements Serializable{
 		this.liked = liked;
 		this.reRevvited = reRevvited;
 		this.followers = followers;
+	}
+
+
+	
+	/**
+	 * @return the photoUrl
+	 */
+	public String getPhotoUrl() {
+		return photoUrl;
+	}
+
+
+
+	/**
+	 * @param photoUrl the photoUrl to set
+	 */
+	public void setPhotoUrl(String photoUrl) {
+		this.photoUrl = photoUrl;
 	}
 
 
