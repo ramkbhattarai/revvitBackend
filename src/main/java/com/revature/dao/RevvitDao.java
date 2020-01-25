@@ -1,5 +1,6 @@
 package com.revature.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -17,6 +18,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.models.Revvit;
+import com.revature.models.User;
 
 @Repository
 public class RevvitDao implements IRevvitDao{
@@ -64,6 +66,31 @@ public class RevvitDao implements IRevvitDao{
 		Session s = sessionFactory.getCurrentSession();
 		s.merge(r);
 		return true;
+	}
+	
+	
+	@Transactional
+	public List<Revvit> findByAuthor(User u) {
+//		Session session = sessionFactory.getCurrentSession();
+//		CriteriaBuilder builder = session.getCriteriaBuilder();
+//        CriteriaQuery<Revvit> query = builder.createQuery(Revvit.class);
+//        Root<Revvit> root = query.from(Revvit.class);
+//        query.select(root).where(builder.equal(root.get("author_id"), u));
+//        Query<Revvit> q=session.createQuery(query);
+//        return q.getResultList();
+        
+       // System.out.println("user = " + u);
+          List<Revvit> list = findAll();
+         List<Revvit> list2 = new ArrayList<>();
+         for(Revvit r : list){
+         		if(r.getAuthor().getId() == u.getId()){
+         		list2.add(r);
+        		}
+         }
+         
+         return list2;
+         
+        
 	}
 
 }

@@ -12,6 +12,7 @@ import com.revature.dao.HashTagDao;
 import com.revature.dao.IRevvitDao;
 import com.revature.dao.RevvitDao;
 import com.revature.models.Revvit;
+import com.revature.models.User;
 
 @Service
 public class RevvitService {
@@ -34,6 +35,14 @@ public class RevvitService {
 	
 	public boolean update(Revvit r) {
 		 return revvitDao.update(r);
+	}
+	
+	public List<Revvit> findByAuthor(User u){
+		List<Revvit> list = revvitDao.findByAuthor(u);
+		for(Revvit r : list) {
+			System.out.println(r);
+		}
+		return list;
 	}
 
 }

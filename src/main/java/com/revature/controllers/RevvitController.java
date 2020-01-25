@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.revature.models.Revvit;
+import com.revature.models.User;
 import com.revature.services.RevvitService;
 
 @CrossOrigin
@@ -42,6 +43,18 @@ public class RevvitController {
 		Revvit r = list.get(id);
 		
 		return ResponseEntity.status(HttpStatus.OK).body(r);
+	}
+	
+	@PostMapping("/revvitsAuthor")
+	@ResponseBody
+	public ResponseEntity<List<Revvit>> findByAuthor(@RequestBody User u) {
+		System.out.println("inside right controller");
+		List<Revvit> list = revvitService.findByAuthor(u);
+		if(list.size() < 1) {
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+		}
+		
+		return ResponseEntity.status(HttpStatus.OK).body(list);
 	}
 	
 	@PostMapping("/saveRevvit")
