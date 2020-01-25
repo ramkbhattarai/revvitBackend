@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,7 +49,7 @@ public class RevvitController {
 	@PostMapping("/revvitsAuthor")
 	@ResponseBody
 	public ResponseEntity<List<Revvit>> findByAuthor(@RequestBody User u) {
-		System.out.println("inside right controller");
+		//System.out.println("inside right controller");
 		List<Revvit> list = revvitService.findByAuthor(u);
 		if(list.size() < 1) {
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
@@ -67,6 +68,12 @@ public class RevvitController {
 	@ResponseBody
 	public ResponseEntity<Boolean> update(@RequestBody Revvit r) {
 		return ResponseEntity.ok(revvitService.update(r));
+	}
+	
+	@PostMapping("/deleteRevvit")
+	@ResponseBody
+	public ResponseEntity<Boolean> delete(@RequestBody Revvit r) {
+		return ResponseEntity.ok(revvitService.delete(r.getId()));
 	}
 
 }

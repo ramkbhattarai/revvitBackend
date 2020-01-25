@@ -92,5 +92,13 @@ public class RevvitDao implements IRevvitDao{
          
         
 	}
+	
+	@Transactional
+	public boolean delete(int id) {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "delete from Revvit where id= :revvit_id";
+		session.createQuery(hql).setParameter("revvit_id", id).executeUpdate();
+		return true;
+	}
 
 }

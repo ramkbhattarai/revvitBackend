@@ -38,11 +38,12 @@ public class RevvitService {
 	}
 	
 	public List<Revvit> findByAuthor(User u){
-		List<Revvit> list = revvitDao.findByAuthor(u);
-		for(Revvit r : list) {
-			System.out.println(r);
-		}
-		return list;
+		return revvitDao.findByAuthor(u);
+		 
+	}
+	
+	public boolean delete(int id) {
+		return revvitDao.delete(id);
 	}
 
 }
