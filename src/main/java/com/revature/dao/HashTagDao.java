@@ -22,12 +22,12 @@ public class HashTagDao implements IHashTag{
 	
 	@Autowired
 	@Qualifier("sessionFactory")
-	private SessionFactory sf;
+	private SessionFactory sessionFactory;
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public List<HashTag> findAll() {
-		Session s = sf.getCurrentSession();
+		Session s = sessionFactory.getCurrentSession();
 		CriteriaQuery<HashTag> query = s.getCriteriaBuilder().createQuery(HashTag.class);
 		Root<HashTag> root = query.from(HashTag.class);
 		query.select(root);
@@ -40,7 +40,7 @@ public class HashTagDao implements IHashTag{
 	@Override
 	@Transactional
 	public HashTag findById(int id) {
-		Session session = sf.getCurrentSession();
+		Session session = sessionFactory.getCurrentSession();
 		CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<HashTag> query = builder.createQuery(HashTag.class);
         Root<HashTag> root = query.from(HashTag.class);
@@ -53,7 +53,7 @@ public class HashTagDao implements IHashTag{
 	@Override
 	@Transactional
 	public HashTag save(HashTag h) {
-		Session s = sf.getCurrentSession();
+		Session s = sessionFactory.getCurrentSession();
 		Integer i =  (Integer) s.save(h);
 		 return findById(i);
 	}
@@ -61,7 +61,7 @@ public class HashTagDao implements IHashTag{
 	@Override
 	@Transactional
 	public boolean update(HashTag h) {
-		Session s = sf.getCurrentSession();
+		Session s = sessionFactory.getCurrentSession();
 		s.merge(h);
 		return true;
 	}

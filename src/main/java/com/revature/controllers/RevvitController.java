@@ -28,6 +28,7 @@ public class RevvitController {
 	@ResponseBody 
 	public List<Revvit> findAll() {
 		return revvitService.findAll();
+		
 	}
 	
 	@GetMapping("/revvits/{id}")
@@ -45,7 +46,7 @@ public class RevvitController {
 	
 	@PostMapping("/saveRevvit")
 	@ResponseBody
-	public ResponseEntity<Revvit> save(@RequestBody Revvit r) {
+	public ResponseEntity<Revvit> save(@RequestBody Revvit r) {	
 		return ResponseEntity.ok(revvitService.save(r));
 	}
 	

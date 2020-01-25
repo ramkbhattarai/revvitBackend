@@ -14,13 +14,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity
@@ -39,12 +43,9 @@ public class Revvit implements Serializable{
 	@Column(name="text")
 	private String text;
 	
-	@Column(name="imageUrl")
-	private byte[] imageUrl;
 		
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "author_id")
-	@JsonIgnoreProperties("revvits")
 	private User author;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
@@ -91,32 +92,19 @@ public class Revvit implements Serializable{
 
 
 
-	public Revvit(int id, String text, byte[] imageUrl, User author) {
+	public Revvit(int id, String text, User author) {
 		super();
 		this.id = id;
 		this.text = text;
-		this.imageUrl = imageUrl;
 		this.author = author;
 	}
 
 
-
-
-	public Revvit(String text, byte[] imageUrl, User author) {
-		super();
-		this.text = text;
-		this.imageUrl = imageUrl;
-		this.author = author;
-	}
-
-
-
-
-	public Revvit(int id, String text, byte[] imageUrl, User author, List<User> likedBy) {
+	public Revvit(int id, String text,  User author, List<User> likedBy) {
 		super();
 		this.id = id;
 		this.text = text;
-		this.imageUrl = imageUrl;
+
 		this.author = author;
 		this.likedBy = likedBy;
 	}
@@ -124,11 +112,10 @@ public class Revvit implements Serializable{
 
 
 
-	public Revvit(int id, String text, byte[] imageUrl, User author, List<User> likedBy, List<User> reRevvitedBy) {
+	public Revvit(int id, String text, User author, List<User> likedBy, List<User> reRevvitedBy) {
 		super();
 		this.id = id;
 		this.text = text;
-		this.imageUrl = imageUrl;
 		this.author = author;
 		this.likedBy = likedBy;
 		this.reRevvitedBy = reRevvitedBy;
@@ -142,7 +129,6 @@ public class Revvit implements Serializable{
 		super();
 		this.id = id;
 		this.text = text;
-		this.imageUrl = imageUrl;
 		this.author = author;
 		this.likedBy = likedBy;
 		this.reRevvitedBy = reRevvitedBy;
@@ -188,28 +174,6 @@ public class Revvit implements Serializable{
 	public void setText(String text) {
 		this.text = text;
 	}
-
-
-
-
-	/**
-	 * @return the imageUrl
-	 */
-	public byte[] getImageUrl() {
-		return imageUrl;
-	}
-
-
-
-
-	/**
-	 * @param imageUrl the imageUrl to set
-	 */
-	public void setImageUrl(byte[] imageUrl) {
-		this.imageUrl = imageUrl;
-	}
-
-
 
 
 	/**
@@ -294,11 +258,7 @@ public class Revvit implements Serializable{
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + Arrays.hashCode(imageUrl);
-		result = prime * result + Objects.hash(author, hashtags, id, likedBy, reRevvitedBy, text);
-		return result;
+		return Objects.hash(author, hashtags, id, likedBy, reRevvitedBy, text);
 	}
 
 
@@ -314,8 +274,8 @@ public class Revvit implements Serializable{
 		}
 		Revvit other = (Revvit) obj;
 		return Objects.equals(author, other.author) && Objects.equals(hashtags, other.hashtags) && id == other.id
-				&& Arrays.equals(imageUrl, other.imageUrl) && Objects.equals(likedBy, other.likedBy)
-				&& Objects.equals(reRevvitedBy, other.reRevvitedBy) && Objects.equals(text, other.text);
+				&& Objects.equals(likedBy, other.likedBy) && Objects.equals(reRevvitedBy, other.reRevvitedBy)
+				&& Objects.equals(text, other.text);
 	}
 
 
@@ -323,9 +283,14 @@ public class Revvit implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Revvit [id=" + id + ", text=" + text + ", imageUrl=" + Arrays.toString(imageUrl) + ", author=" + author.getUsername()
-				+ ", likedBy=" + likedBy + ", reRevvitedBy=" + reRevvitedBy + ", hashtags=" + hashtags + "]";
+		return "Revvit [id=" + id + ", text=" + text + ", author=" + author.getFname() + ", likedBy=" + likedBy + ", reRevvitedBy="
+				+ reRevvitedBy + ", hashtags=" + hashtags + "]";
 	}
+
+
+
+
+	
 	
 	
 

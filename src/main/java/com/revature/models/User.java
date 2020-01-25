@@ -19,7 +19,11 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.JoinColumn;
 
@@ -56,7 +60,6 @@ public class User implements Serializable{
 	private byte[] profilePicture;
 	
 	@OneToMany(mappedBy="author", fetch = FetchType.EAGER)
-	@JsonIgnoreProperties("author")
 	private List<Revvit> revvits = new ArrayList<>();
 	
 	
@@ -369,12 +372,12 @@ public class User implements Serializable{
 	}
 
 
-	/**
-	 * @return the revvits
-	 */
-	public List<Revvit> getRevvits() {
-		return revvits;
-	}
+//	/**
+//	 * @return the revvits
+//	 */
+//	public List<Revvit> getRevvits() {
+//		return revvits;
+//	}
 
 
 	/**

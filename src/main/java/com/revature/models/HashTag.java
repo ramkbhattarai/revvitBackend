@@ -127,7 +127,7 @@ public class HashTag implements Serializable{
 
 	@Override
 	public String toString() {
-		return "HashTag [id=" + id + ", text=" + text + ", revvits=" + revvits + "]";
+		return "HashTag [id=" + id + ", text=" + text + ", revvits=" + revvits.toString() + "]";
 	}
 
 	

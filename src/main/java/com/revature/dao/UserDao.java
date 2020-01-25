@@ -69,7 +69,6 @@ public class UserDao implements IUserDao{
 	
 	@Transactional
 	public User login(String username, String password) {
-		System.out.println("inside login method");
 		Session session = sessionFactory.getCurrentSession();
 		CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<User> query = builder.createQuery(User.class);
