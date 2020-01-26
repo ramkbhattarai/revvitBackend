@@ -1,7 +1,7 @@
 package com.revature.controllers;
 
 import java.util.List;
-
+import org.apache.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -30,6 +30,7 @@ import com.revature.services.UserService;
 @Controller
 public class UserController {
 	
+	private static Logger logger = Logger.getLogger(UserController.class);
 	@Autowired
 	private UserService userService;// = new UserService();
 	
@@ -49,13 +50,14 @@ public class UserController {
 		}
 		
 		User u = list.get(id);
-		
+		logger.info("User: " + u + " retrieved");
 		return ResponseEntity.status(HttpStatus.OK).body(u);
 	}
 	
 	@PostMapping("/signup")
 	@ResponseBody
 	public ResponseEntity<User> signup(@RequestBody User u) {
+		logger.info("User: " + u + " saved");
 		return ResponseEntity.ok(userService.save(u));
 	}
 	
@@ -68,6 +70,7 @@ public class UserController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<User> login(@RequestBody User u, @RequestHeader HttpHeaders headers, HttpServletRequest httpRequest) {
+		logger.info("User: " + u + " logged in");
 		return ResponseEntity.ok(userService.login(u.getUsername(), u.getPassword()));
 	}
 	
@@ -76,12 +79,14 @@ public class UserController {
 	public ResponseEntity<Boolean> logout(HttpServletRequest request) {
 		HttpSession httpSession = request.getSession();
         httpSession.invalidate();
+        logger.info("Session started");
         return ResponseEntity.ok(new Boolean("true"));
 	}
 	
 	@GetMapping("/usersFollowers")
 	@ResponseBody
 	public List<User> getAllFollowers(User u){
+		logger.info("User: " + u + "'s followers retrieved...");
 		return userService.getAllFollowers(u);
 	}
 	

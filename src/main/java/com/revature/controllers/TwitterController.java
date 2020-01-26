@@ -1,5 +1,6 @@
 package com.revature.controllers;
 
+import org.apache.log4j.Logger;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ import twitter4j.TwitterException;
 @Controller
 public class TwitterController {
 
+	private static Logger logger = Logger.getLogger(TwitterController.class);
 	
 	@Autowired
 	private TwitConfig tc;
@@ -28,6 +30,7 @@ public class TwitterController {
 	@GetMapping(value = "/tweets")
 	@ResponseBody 
 	public List<Revvit> findAll() throws TwitterException {
+		logger.info("In Twitter Controller - Tweets returned as timeline");
 		return tc.getTimeline();
 		
 	}
@@ -35,14 +38,16 @@ public class TwitterController {
 	
 	@PostMapping(value = "/tweet")
 	@ResponseBody 
-	public boolean postTweet(@RequestBody Revvit r) throws TwitterException {				
+	public boolean postTweet(@RequestBody Revvit r) throws TwitterException {
+		logger.info("In Twitter Controller - tweet posted");
 		return tc.postTweet(r.getText());
 		
 	}
 	
 	@PostMapping(value = "/followUser")
 	@ResponseBody 
-	public boolean followUser(@RequestBody User u) throws TwitterException {				
+	public boolean followUser(@RequestBody User u) throws TwitterException {
+		logger.info("In Twitter Controller - User: " + u + " followed");
 		return tc.followUser(u.getUsername());
 		
 	}

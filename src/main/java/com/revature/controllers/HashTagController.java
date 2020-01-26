@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.revature.models.HashTag;
 import com.revature.services.HashTagService;
-
+import org.apache.log4j.Logger;
 @CrossOrigin
 @Controller
 public class HashTagController {
 	
-	
+	private static Logger logger = Logger.getLogger(HashTagService.class);
     private HashTagService hs = new HashTagService();
 	
 	@GetMapping(value = "/hashTags")
@@ -34,6 +34,7 @@ public class HashTagController {
 	public ResponseEntity<HashTag> findById(@PathVariable("id") int id) {
 		List<HashTag> list = hs.findAll();
 		if(id >= list.size()) {
+			logger.info("In HashTagController - all hashtags found");
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 		}
 		

@@ -1,5 +1,5 @@
 package com.revature.twiter;
-
+import org.apache.log4j.Logger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +17,7 @@ import twitter4j.conf.ConfigurationBuilder;
 @Service
 public class TwitConfig {
 	
+	private static Logger logger = Logger.getLogger(TwitConfig.class);
 	public  Twitter getTwitterInstance() {
 	    ConfigurationBuilder cb = new ConfigurationBuilder();   
 	    cb.setDebugEnabled(true)
@@ -43,6 +44,7 @@ public class TwitConfig {
 	public boolean postTweet(String tweet) throws TwitterException {
 		Twitter twitter = getTwitterInstance();
 	     twitter.updateStatus(tweet);
+	     logger.info(tweet + " posted to Twitter.com");
 	    return true;
 	}
 	
@@ -52,7 +54,7 @@ public class TwitConfig {
 		
 		String username = user.getName();
 		String userphoto = user.getMiniProfileImageURL();
-		
+		logger.info(user + " turned to user");
 		return  new User(username, userphoto);		
 	}
 	
@@ -69,7 +71,7 @@ public class TwitConfig {
 	    int likecount = status.getFavoriteCount();
 	    
 	    int retweetcount = status.getRetweetCount();
-	    
+	    logger.info(status + " status turned to Rev");
 		return  new Revvit(0, text, user1, null, null, null, likecount,retweetcount);
 			
 	}
@@ -85,6 +87,7 @@ public class TwitConfig {
 	      revlist.add(rev);
 	      
 	    }
+	    logger.info("timeline retrieved");
 		return revlist;
 		
 	}

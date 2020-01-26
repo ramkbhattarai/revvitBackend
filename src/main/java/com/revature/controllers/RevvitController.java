@@ -18,11 +18,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.revature.models.Revvit;
 import com.revature.models.User;
 import com.revature.services.RevvitService;
-
+import org.apache.log4j.Logger;
 @CrossOrigin
 @Controller
 public class RevvitController {
 	
+	
+	private static Logger logger = Logger.getLogger(RevvitController.class);
 	@Autowired
 	private RevvitService revvitService;
 	
@@ -38,6 +40,7 @@ public class RevvitController {
 	public ResponseEntity<Revvit> findById(@PathVariable("id") int id) {
 		List<Revvit> list = revvitService.findAll();
 		if(id >= list.size()) {
+			logger.info("In Revvit Controller - Revvit returned by id: " + id);
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 		}
 		
@@ -52,6 +55,7 @@ public class RevvitController {
 		//System.out.println("inside right controller");
 		List<Revvit> list = revvitService.findByAuthor(u);
 		if(list.size() < 1) {
+			logger.info("In Revvit Controller - author: " + u);
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 		}
 		
@@ -61,6 +65,7 @@ public class RevvitController {
 	@PostMapping("/saveRevvit")
 	@ResponseBody
 	public ResponseEntity<Revvit> save(@RequestBody Revvit r) {	
+		logger.info("In Revvit Controller - Revvit: " + r + " saved");
 		return ResponseEntity.ok(revvitService.save(r));
 	}
 	
@@ -73,6 +78,7 @@ public class RevvitController {
 	@PostMapping("/deleteRevvit")
 	@ResponseBody
 	public ResponseEntity<Boolean> delete(@RequestBody Revvit r) {
+		logger.info("In Revvit Controller - Revvit: " + r + "deleted!");
 		return ResponseEntity.ok(revvitService.delete(r.getId()));
 	}
 
