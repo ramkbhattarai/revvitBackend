@@ -7,6 +7,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -22,7 +23,7 @@ import com.revature.models.User;
 
 @Repository
 public class RevvitDao implements IRevvitDao{
-	
+	private static Logger logger = Logger.getLogger(RevvitDao.class);
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -34,7 +35,7 @@ public class RevvitDao implements IRevvitDao{
 		Root<Revvit> root = query.from(Revvit.class);
 		query.select(root);
 		Query<Revvit> q = s.createQuery(query);
-		
+		logger.info("In RevvitDao - findAll() query created");
 		return q.getResultList();
 		
 	}
@@ -48,6 +49,7 @@ public class RevvitDao implements IRevvitDao{
         Root<Revvit> root = query.from(Revvit.class);
         query.select(root).where(builder.equal(root.get("id"), id));
         Query<Revvit> q=session.createQuery(query);
+		logger.info("In Revvit Dao - query created for id: " + id);
         return q.getSingleResult();
         
 	}
@@ -57,6 +59,7 @@ public class RevvitDao implements IRevvitDao{
 	public Revvit save(Revvit r) {
 		Session s = sessionFactory.getCurrentSession();
 		Integer i = (Integer) s.save(r);
+		logger.info("In Revvit Dao - Revvit: " + r + "saved");
 		 return findById(i);
 	}
 
@@ -98,6 +101,7 @@ public class RevvitDao implements IRevvitDao{
 		Session session = sessionFactory.getCurrentSession();
 		String hql = "delete from Revvit where id= :revvit_id";
 		session.createQuery(hql).setParameter("revvit_id", id).executeUpdate();
+		logger.info("In Revvit Dao - revvit by id: " + id + "deleted");
 		return true;
 	}
 

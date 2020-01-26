@@ -26,6 +26,7 @@ public class TwitConfig {
 	    .setOAuthAccessToken("1217245211094634496-9RTtsR17U0PxgwvjiTwilLZsCAMYh1")
 	    .setOAuthAccessTokenSecret("3FnwcJmN8KggoLFL5u8Rr8ciJjWOyTRIrItZzC5rl05EB");
 	    TwitterFactory tf = new TwitterFactory(cb.build());
+	    logger.info("In TweetConfig - new TwitterFactory built");
 	    return tf.getInstance();
 	    
 	}
@@ -36,7 +37,7 @@ public class TwitConfig {
 		 Twitter twitter= getTwitterInstance();
 
          twitter.createFriendship(username); 
- 
+         logger.info(username + " followed");
          return true;
 		
 	}
