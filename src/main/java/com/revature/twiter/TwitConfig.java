@@ -3,7 +3,6 @@ package com.revature.twiter;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.revature.models.Revvit;
@@ -26,25 +25,24 @@ public class TwitConfig {
 	    .setOAuthAccessToken("1217245211094634496-9RTtsR17U0PxgwvjiTwilLZsCAMYh1")
 	    .setOAuthAccessTokenSecret("3FnwcJmN8KggoLFL5u8Rr8ciJjWOyTRIrItZzC5rl05EB");
 	    TwitterFactory tf = new TwitterFactory(cb.build());
-	    Twitter twitter = tf.getInstance();
-	    return twitter;
+	    return tf.getInstance();
+	    
 	}
 	
 	
 	public  boolean followUser(String username) throws TwitterException {
-		System.out.println(username);
+
 		 Twitter twitter= getTwitterInstance();
-		 System.out.println(twitter);
+
          twitter.createFriendship(username); 
-         System.out.println("after create friendship");
+ 
          return true;
 		
 	}
 	
 	public boolean postTweet(String tweet) throws TwitterException {
 		Twitter twitter = getTwitterInstance();
-	    Status status = twitter.updateStatus(tweet);
-	    System.out.println("Successfully updated the status to " + status.getText() + ".");
+	     twitter.updateStatus(tweet);
 	    return true;
 	}
 	
@@ -55,9 +53,7 @@ public class TwitConfig {
 		String username = user.getName();
 		String userphoto = user.getMiniProfileImageURL();
 		
-		User user1 = new User(username, userphoto);
-	
-		return user1;		
+		return  new User(username, userphoto);		
 	}
 	
 	
@@ -74,20 +70,17 @@ public class TwitConfig {
 	    
 	    int retweetcount = status.getRetweetCount();
 	    
-		Revvit rev = new Revvit(0, text, user1, null, null, null, likecount,retweetcount);
-		
-		return rev;				
+		return  new Revvit(0, text, user1, null, null, null, likecount,retweetcount);
+			
 	}
 	
 	
 	public List<Revvit> getTimeline() throws TwitterException {
-		List<Revvit> revlist = new ArrayList<Revvit>();
+		List<Revvit> revlist = new ArrayList<>();
 	    Twitter twitter = getTwitterInstance();
 	    List<Status> statuses = twitter.getHomeTimeline();	   
-	    // System.out.println("Showing home timeline.");	   
-	    for (Status status : statuses) {
-	       // System.out.println(status.getUser().getName() + ":" +
-	                         //  status.getText());   	 	     
+
+	    for (Status status : statuses) {  	 	     
 	      Revvit rev = turnStatusToRev(status);
 	      revlist.add(rev);
 	      

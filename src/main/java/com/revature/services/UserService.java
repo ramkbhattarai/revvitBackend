@@ -3,12 +3,9 @@ package com.revature.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.revature.dao.IUserDao;
+import org.springframework.stereotype.Service;
+
 import com.revature.dao.UserDao;
 import com.revature.models.User;
 
@@ -16,7 +13,7 @@ import com.revature.models.User;
 public class UserService {
 	
 	@Autowired
-	private UserDao userDao;// = new UserDao() ;
+	private UserDao userDao;
 	
 	public List<User> findAll(){
 		return userDao.findAll();

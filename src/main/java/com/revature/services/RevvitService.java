@@ -3,13 +3,9 @@ package com.revature.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.revature.dao.HashTagDao;
-import com.revature.dao.IRevvitDao;
+import org.springframework.stereotype.Service;
+
 import com.revature.dao.RevvitDao;
 import com.revature.models.Revvit;
 import com.revature.models.User;
@@ -19,7 +15,7 @@ public class RevvitService {
 	
 	
 	@Autowired
-	private RevvitDao revvitDao;// = new RevvitDao(); 
+	private RevvitDao revvitDao;
 	
 	public List<Revvit> findAll(){
 		return revvitDao.findAll();

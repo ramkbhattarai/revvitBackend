@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.revature.models.Revvit;
 import com.revature.models.User;
-import com.revature.services.RevvitService;
+
 import com.revature.twiter.TwitConfig;
 
 import twitter4j.TwitterException;
@@ -23,7 +23,7 @@ public class TwitterController {
 
 	
 	@Autowired
-	private TwitConfig tc;// = new RevvitService(); 
+	private TwitConfig tc;
 	
 	@GetMapping(value = "/tweets")
 	@ResponseBody 

@@ -19,11 +19,6 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.JoinColumn;
 
@@ -57,7 +52,7 @@ public class User implements Serializable{
 	private String password;
 	
 	@Column(name="profilePicture")
-	private byte[] profilePicture;
+	private String profilePicture;
 	
 	private String photoUrl;
 	
@@ -126,7 +121,7 @@ public class User implements Serializable{
 
 
 	public User(int id, String fname, String lname, String userName, String email, String password,
-			byte[] profilePicture, List<Revvit> revvits, List<Message> send_messages, List<Message> received_messages,
+			String profilePicture, List<Revvit> revvits, List<Message> send_messages, List<Message> received_messages,
 			List<Revvit> liked, List<Revvit> reRevvited, List<User> followers, List<User> following) {
 		super();
 		this.id = id;
@@ -157,7 +152,7 @@ public class User implements Serializable{
 
 
 	public User(int id, String fname, String lname, String userName, String email, String password,
-			byte[] profilePicture) {
+			String profilePicture) {
 		super();
 		this.id = id;
 		this.fname = fname;
@@ -170,7 +165,7 @@ public class User implements Serializable{
 
 
 	public User(int id, String fname, String lname, String userName, String email, String password,
-			byte[] profilePicture, List<Revvit> revvits) {
+			String profilePicture, List<Revvit> revvits) {
 		super();
 		this.id = id;
 		this.fname = fname;
@@ -184,7 +179,7 @@ public class User implements Serializable{
 
 
 	public User(int id, String fname, String lname, String userName, String email, String password,
-			byte[] profilePicture, List<Revvit> revvits, List<Message> send_messages) {
+			String profilePicture, List<Revvit> revvits, List<Message> send_messages) {
 		super();
 		this.id = id;
 		this.fname = fname;
@@ -199,7 +194,7 @@ public class User implements Serializable{
 
 
 	public User(int id, String fname, String lname, String userName, String email, String password,
-			byte[] profilePicture, List<Revvit> revvits, List<Message> send_messages, List<Message> received_messages) {
+			String profilePicture, List<Revvit> revvits, List<Message> send_messages, List<Message> received_messages) {
 		super();
 		this.id = id;
 		this.fname = fname;
@@ -215,7 +210,7 @@ public class User implements Serializable{
 
 
 	public User(int id, String fname, String lname, String userName, String email, String password,
-			byte[] profilePicture, List<Revvit> revvits, List<Message> send_messages, List<Message> received_messages,
+			String profilePicture, List<Revvit> revvits, List<Message> send_messages, List<Message> received_messages,
 			List<Revvit> liked) {
 		super();
 		this.id = id;
@@ -233,7 +228,7 @@ public class User implements Serializable{
 
 
 	public User(int id, String fname, String lname, String userName, String email, String password,
-			byte[] profilePicture, List<Revvit> revvits, List<Message> send_messages, List<Message> received_messages,
+			String profilePicture, List<Revvit> revvits, List<Message> send_messages, List<Message> received_messages,
 			List<Revvit> liked, List<Revvit> reRevvited) {
 		super();
 		this.id = id;
@@ -252,7 +247,7 @@ public class User implements Serializable{
 
 
 	public User(int id, String fname, String lname, String userName, String email, String password,
-			byte[] profilePicture, List<Revvit> revvits, List<Message> send_messages, List<Message> received_messages,
+			String profilePicture, List<Revvit> revvits, List<Message> send_messages, List<Message> received_messages,
 			List<Revvit> liked, List<Revvit> reRevvited, List<User> followers) {
 		super();
 		this.id = id;
@@ -388,7 +383,7 @@ public class User implements Serializable{
 	/**
 	 * @return the profilePicture
 	 */
-	public byte[] getProfilePicture() {
+	public String getProfilePicture() {
 		return profilePicture;
 	}
 
@@ -396,7 +391,7 @@ public class User implements Serializable{
 	/**
 	 * @param profilePicture the profilePicture to set
 	 */
-	public void setProfilePicture(byte[] profilePicture) {
+	public void setProfilePicture(String profilePicture) {
 		this.profilePicture = profilePicture;
 	}
 
@@ -513,40 +508,18 @@ public class User implements Serializable{
 	}
 
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + Arrays.hashCode(profilePicture);
-		result = prime * result + Objects.hash(email, fname, followers, following, id, liked, lname, password,
-				reRevvited, received_messages, revvits, send_messages, username);
-		return result;
-	}
 
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (!(obj instanceof User)) {
-			return false;
-		}
-		User other = (User) obj;
-		return Objects.equals(email, other.email) && Objects.equals(fname, other.fname)
-				&& Objects.equals(followers, other.followers) && Objects.equals(following, other.following)
-				&& id == other.id && Objects.equals(liked, other.liked) && Objects.equals(lname, other.lname)
-				&& Objects.equals(password, other.password) && Arrays.equals(profilePicture, other.profilePicture)
-				&& Objects.equals(reRevvited, other.reRevvited)
-				&& Objects.equals(received_messages, other.received_messages) && Objects.equals(revvits, other.revvits)
-				&& Objects.equals(send_messages, other.send_messages) && Objects.equals(username, other.username);
-	}
+
+
+
+
 
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", fname=" + fname + ", lname=" + lname + ", username=" + username + ", email="
-				+ email + ", password=" + password + ", profilePicture=" + Arrays.toString(profilePicture)
+				+ email + ", password=" + password + ", profilePicture=" + profilePicture
 				+ ", revvits=" + revvits + ", send_messages=" + send_messages + ", received_messages="
 				+ received_messages + ", liked=" + liked + ", reRevvited=" + reRevvited + ", followers=" + followers
 				+ ", following=" + following + "]";
