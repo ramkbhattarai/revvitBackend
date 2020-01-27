@@ -125,4 +125,8 @@ public class TestUserAndRevvit {
     	assertNotNull(h);
     	assertEquals(hl, r.getHashtags());
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> b9a6fd1501be77e732d6b67d026830cb33ba79e1

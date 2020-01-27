@@ -26,7 +26,7 @@
     	<!-- If you want to use Environment variables, use the example below -->
     	<!-- <property name="url" value="#{systemEnvironment['ENV NAME']}"/> -->
     	<property name="username" value="postgres"/>
-    	<property name="password" value=""/>
+    	<property name="password" value="7540"/>
     	<property name="driverClassName" value="org.postgresql.Driver"/>
     </bean>
     

@@ -1,7 +1,7 @@
 package com.revature.controllers;
 
 import java.util.List;
-
+import org.apache.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -53,15 +53,22 @@ public class UserController {
 		
 		User u = list.get(id);
 		logger.info("User: " + u + " retrieved");
+<<<<<<< HEAD
 		
+=======
+>>>>>>> b9a6fd1501be77e732d6b67d026830cb33ba79e1
 		return ResponseEntity.status(HttpStatus.OK).body(u);
 	}
 	
 	@PostMapping("/signup")
 	@ResponseBody
 	public ResponseEntity<User> signup(@RequestBody User u) {
+<<<<<<< HEAD
 		logger.info("User: " + u + " sign uped");
 		u.setPassword(DigestUtils.sha256Hex(u.getPassword()));
+=======
+		logger.info("User: " + u + " saved");
+>>>>>>> b9a6fd1501be77e732d6b67d026830cb33ba79e1
 		return ResponseEntity.ok(userService.save(u));
 	}
 	
@@ -76,7 +83,10 @@ public class UserController {
 	@ResponseBody
 	public ResponseEntity<User> login(@RequestBody User u, @RequestHeader HttpHeaders headers, HttpServletRequest httpRequest) {
 		logger.info("User: " + u + " logged in");
+<<<<<<< HEAD
 		u.setPassword(DigestUtils.sha256Hex(u.getPassword()));
+=======
+>>>>>>> b9a6fd1501be77e732d6b67d026830cb33ba79e1
 		return ResponseEntity.ok(userService.login(u.getUsername(), u.getPassword()));
 	}
 	
@@ -85,13 +95,18 @@ public class UserController {
 	public ResponseEntity<Boolean> logout(HttpServletRequest request) {
 		HttpSession httpSession = request.getSession();
         httpSession.invalidate();
+<<<<<<< HEAD
         logger.info("session ended");
+=======
+        logger.info("Session started");
+>>>>>>> b9a6fd1501be77e732d6b67d026830cb33ba79e1
         return ResponseEntity.ok(new Boolean("true"));
 	}
 	
 	@GetMapping("/usersFollowers")
 	@ResponseBody
 	public List<User> getAllFollowers(User u){
+		logger.info("User: " + u + "'s followers retrieved...");
 		return userService.getAllFollowers(u);
 	}
 	

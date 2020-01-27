@@ -18,10 +18,11 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.models.User;
-
+import org.apache.log4j.Logger;
 @Repository
 public class UserDao implements IUserDao{
 	
+	private static Logger logger = Logger.getLogger(UserDao.class);
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -33,7 +34,7 @@ public class UserDao implements IUserDao{
 		Root<User> root = query.from(User.class);
 		query.select(root);
 		Query<User> q = s.createQuery(query);
-		
+		logger.info("In UserDao - result list returned for findAll()");
 		return q.getResultList();
 		
 	}
@@ -47,6 +48,7 @@ public class UserDao implements IUserDao{
         Root<User> root = query.from(User.class);
         query.select(root).where(builder.equal(root.get("id"), id));
         Query<User> q=session.createQuery(query);
+        logger.info("In UserDao - query session created");
         return q.getSingleResult();
         
 	}
@@ -56,6 +58,7 @@ public class UserDao implements IUserDao{
 	public User save(User u) {
 		Session s = sessionFactory.getCurrentSession();
 		Integer i = (Integer) s.save(u);
+		logger.info("In UserDao - " + u + "found");
 		return findById(i); 
 	}
 
@@ -79,6 +82,7 @@ public class UserDao implements IUserDao{
         		builder.equal(root.get("password"), password)
         		);
         Query<User> q = session.createQuery(query);
+        logger.info("In UserDao - query created");
         return q.getSingleResult();
         
 		

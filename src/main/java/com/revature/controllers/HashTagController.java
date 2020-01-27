@@ -16,13 +16,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.revature.models.HashTag;
 import com.revature.services.HashTagService;
-
+import org.apache.log4j.Logger;
 @CrossOrigin
 @Controller
 public class HashTagController {
 	
 	private static Logger logger = Logger.getLogger(HashTagService.class);
+<<<<<<< HEAD
 	
+=======
+>>>>>>> b9a6fd1501be77e732d6b67d026830cb33ba79e1
     private HashTagService hs = new HashTagService();
 	
 	@GetMapping(value = "/hashTags")
