@@ -5,6 +5,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -30,6 +32,7 @@ import com.revature.services.UserService;
 @Controller
 public class UserController {
 	
+	private static Logger logger = Logger.getLogger(UserController.class);
 	@Autowired
 	private UserService userService;// = new UserService();
 	
@@ -49,6 +52,7 @@ public class UserController {
 		}
 		
 		User u = list.get(id);
+		logger.info("User: " + u + " retrieved");
 		
 		return ResponseEntity.status(HttpStatus.OK).body(u);
 	}
@@ -56,18 +60,23 @@ public class UserController {
 	@PostMapping("/signup")
 	@ResponseBody
 	public ResponseEntity<User> signup(@RequestBody User u) {
+		logger.info("User: " + u + " sign uped");
+		u.setPassword(DigestUtils.sha256Hex(u.getPassword()));
 		return ResponseEntity.ok(userService.save(u));
 	}
 	
 	@PatchMapping("/user")
 	@ResponseBody
 	public ResponseEntity<Boolean> update(@RequestBody User u) {
+		logger.info("User: " + u + " updated");
 		return ResponseEntity.ok(userService.update(u));
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<User> login(@RequestBody User u, @RequestHeader HttpHeaders headers, HttpServletRequest httpRequest) {
+		logger.info("User: " + u + " logged in");
+		u.setPassword(DigestUtils.sha256Hex(u.getPassword()));
 		return ResponseEntity.ok(userService.login(u.getUsername(), u.getPassword()));
 	}
 	
@@ -76,6 +85,7 @@ public class UserController {
 	public ResponseEntity<Boolean> logout(HttpServletRequest request) {
 		HttpSession httpSession = request.getSession();
         httpSession.invalidate();
+        logger.info("session ended");
         return ResponseEntity.ok(new Boolean("true"));
 	}
 	

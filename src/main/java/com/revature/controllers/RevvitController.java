@@ -1,7 +1,10 @@
 package com.revature.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+import org.hibernate.mapping.Array;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +26,7 @@ import com.revature.services.RevvitService;
 @Controller
 public class RevvitController {
 	
+	private static Logger logger = Logger.getLogger(RevvitController.class);
 	@Autowired
 	private RevvitService revvitService;
 	
@@ -38,6 +42,7 @@ public class RevvitController {
 	public ResponseEntity<Revvit> findById(@PathVariable("id") int id) {
 		List<Revvit> list = revvitService.findAll();
 		if(id >= list.size()) {
+			logger.info("In Revvit Controller - Revvit returned by id: " + id);
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 		}
 		
@@ -52,6 +57,7 @@ public class RevvitController {
 		//System.out.println("inside right controller");
 		List<Revvit> list = revvitService.findByAuthor(u);
 		if(list.size() < 1) {
+			logger.info("In Revvit Controller - author returned " + u);
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 		}
 		
@@ -61,6 +67,7 @@ public class RevvitController {
 	@PostMapping("/saveRevvit")
 	@ResponseBody
 	public ResponseEntity<Revvit> save(@RequestBody Revvit r) {	
+		logger.info("In Revvit Controller - Revvit saved: " + r);
 		return ResponseEntity.ok(revvitService.save(r));
 	}
 	
@@ -73,7 +80,21 @@ public class RevvitController {
 	@PostMapping("/deleteRevvit")
 	@ResponseBody
 	public ResponseEntity<Boolean> delete(@RequestBody Revvit r) {
+		logger.info("In Revvit Controller - Revvit deleted " + r);
 		return ResponseEntity.ok(revvitService.delete(r.getId()));
+	}
+	
+	
+	@PostMapping("/likeRevvit")
+	@ResponseBody
+	public ResponseEntity<Integer> like(@RequestBody ArrayList<Object> o) {
+		Revvit r =  (Revvit) o.get(0);
+		User u = (User) o.get(1);
+//		System.out.println(o.get(0));
+//		System.out.println(o.get(1));
+		logger.info("In Revvit Controller - Revvit liked " + r);
+		return ResponseEntity.ok(revvitService.like(r, u));
+		//return null;
 	}
 
 }

@@ -100,5 +100,15 @@ public class RevvitDao implements IRevvitDao{
 		session.createQuery(hql).setParameter("revvit_id", id).executeUpdate();
 		return true;
 	}
+	
+	@Transactional
+	public int like(Revvit r, User u) {
+		System.out.println("inside like method");
+		Session session = sessionFactory.getCurrentSession();
+		List<User> list = r.getLikedBy();
+		list.add(u);
+		r.setLikedBy(list);
+		return list.size();
+	}
 
 }

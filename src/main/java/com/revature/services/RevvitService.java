@@ -41,5 +41,10 @@ public class RevvitService {
 	public boolean delete(int id) {
 		return revvitDao.delete(id);
 	}
+	
+
+	public int like(Revvit r, User u) {
+		return revvitDao.like(r, u);
+	}
 
 }
