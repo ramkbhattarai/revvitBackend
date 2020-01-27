@@ -22,11 +22,11 @@
     <aop:config proxy-target-class="true"/>
     
     <bean name="ourDataSource" class="org.apache.commons.dbcp.BasicDataSource">
-    	<property name="url" value="jdbc:postgresql://localhost:5432/postgres"/>
+    	<property name="url" value="jdbc:postgresql://ram-revature-project.cyrsbmjnocgk.us-east-2.rds.amazonaws.com:5432/revvit"/>
     	<!-- If you want to use Environment variables, use the example below -->
     	<!-- <property name="url" value="#{systemEnvironment['ENV NAME']}"/> -->
-    	<property name="username" value="postgres"/>
-    	<property name="password" value="7540"/>
+    	<property name="username" value="ramkb"/>
+    	<property name="password" value="rkb"/>
     	<property name="driverClassName" value="org.postgresql.Driver"/>
     </bean>
     
@@ -38,7 +38,7 @@
     			<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
     			<prop key="hibernate.show_sql">false</prop>
     			<prop key="hibernate.hbm2ddl.auto">update</prop>
-    			<prop key="hibernate.default_schema">project2</prop>
+    			<!-- <prop key="hibernate.default_schema">project2</prop> -->
     		</props>
     	</property>
     </bean>

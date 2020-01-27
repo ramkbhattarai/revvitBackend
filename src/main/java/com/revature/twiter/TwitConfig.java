@@ -54,7 +54,7 @@ public class TwitConfig {
 	public User turnUsertoUser(twitter4j.User user){
 		
 		String username = user.getName();
-		String userphoto = user.getMiniProfileImageURL();
+		String userphoto = user.get400x400ProfileImageURL();
 		logger.info(user + " turned to user");
 		return  new User(username, userphoto);		
 	}

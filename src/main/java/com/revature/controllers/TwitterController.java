@@ -24,10 +24,7 @@ import twitter4j.TwitterException;
 public class TwitterController {
 
 	private static Logger logger = Logger.getLogger(TwitterController.class);
-<<<<<<< HEAD
-=======
-	
->>>>>>> b9a6fd1501be77e732d6b67d026830cb33ba79e1
+
 	@Autowired
 	private TwitConfig tc;
 	
@@ -42,26 +39,19 @@ public class TwitterController {
 	
 	@PostMapping(value = "/tweet")
 	@ResponseBody 
-<<<<<<< HEAD
-	public boolean postTweet(@RequestBody Revvit r) throws TwitterException {	
-		logger.info("In Twitter Controller - Tweets posted");
-=======
 	public boolean postTweet(@RequestBody Revvit r) throws TwitterException {
 		logger.info("In Twitter Controller - tweet posted");
->>>>>>> b9a6fd1501be77e732d6b67d026830cb33ba79e1
+
 		return tc.postTweet(r.getText());
 		
 	}
 	
 	@PostMapping(value = "/followUser")
 	@ResponseBody 
-<<<<<<< HEAD
-	public boolean followUser(@RequestBody User u) throws TwitterException {	
-		logger.info("In Twitter Controller - Tweets is followed by" + u);
-=======
+
 	public boolean followUser(@RequestBody User u) throws TwitterException {
 		logger.info("In Twitter Controller - User: " + u + " followed");
->>>>>>> b9a6fd1501be77e732d6b67d026830cb33ba79e1
+
 		return tc.followUser(u.getUsername());
 		
 	}

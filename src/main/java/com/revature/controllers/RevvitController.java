@@ -26,10 +26,10 @@ import org.apache.log4j.Logger;
 @Controller
 public class RevvitController {
 	
-<<<<<<< HEAD
-=======
+
+
 	
->>>>>>> b9a6fd1501be77e732d6b67d026830cb33ba79e1
+
 	private static Logger logger = Logger.getLogger(RevvitController.class);
 	@Autowired
 	private RevvitService revvitService;
@@ -61,11 +61,11 @@ public class RevvitController {
 		//System.out.println("inside right controller");
 		List<Revvit> list = revvitService.findByAuthor(u);
 		if(list.size() < 1) {
-<<<<<<< HEAD
+
 			logger.info("In Revvit Controller - author returned " + u);
-=======
+
 			logger.info("In Revvit Controller - author: " + u);
->>>>>>> b9a6fd1501be77e732d6b67d026830cb33ba79e1
+
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 		}
 		
@@ -75,11 +75,11 @@ public class RevvitController {
 	@PostMapping("/saveRevvit")
 	@ResponseBody
 	public ResponseEntity<Revvit> save(@RequestBody Revvit r) {	
-<<<<<<< HEAD
+
 		logger.info("In Revvit Controller - Revvit saved: " + r);
-=======
+
 		logger.info("In Revvit Controller - Revvit: " + r + " saved");
->>>>>>> b9a6fd1501be77e732d6b67d026830cb33ba79e1
+
 		return ResponseEntity.ok(revvitService.save(r));
 	}
 	
@@ -92,11 +92,11 @@ public class RevvitController {
 	@PostMapping("/deleteRevvit")
 	@ResponseBody
 	public ResponseEntity<Boolean> delete(@RequestBody Revvit r) {
-<<<<<<< HEAD
+
 		logger.info("In Revvit Controller - Revvit deleted " + r);
-=======
+
 		logger.info("In Revvit Controller - Revvit: " + r + "deleted!");
->>>>>>> b9a6fd1501be77e732d6b67d026830cb33ba79e1
+
 		return ResponseEntity.ok(revvitService.delete(r.getId()));
 	}
 	

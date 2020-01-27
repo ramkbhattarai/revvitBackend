@@ -14,7 +14,6 @@ import com.revature.services.HashTagService;
 public class HomeController {
 	private static Logger logger = Logger.getLogger(HomeController.class);
 
-	private static Logger logger = Logger.getLogger(HomeController.class);
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home() {
 		logger.info("In HomeController - returned home - SERVER CONNECTS!");

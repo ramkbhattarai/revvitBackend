@@ -80,21 +80,17 @@
 		  <artifactId>twitter4j-core</artifactId>
 		  <version>4.0.7</version>
 		</dependency>
-<<<<<<< HEAD
-=======
+
 		
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
->>>>>>> b9a6fd1501be77e732d6b67d026830cb33ba79e1
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
-<<<<<<< HEAD
-=======
-		
->>>>>>> b9a6fd1501be77e732d6b67d026830cb33ba79e1
+
 		<!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
 		<dependency>
 			<groupId>org.mockito</groupId>
@@ -102,35 +98,28 @@
 			<version>1.9.5</version>
 			<scope>test</scope>
 		</dependency>
-<<<<<<< HEAD
-=======
-		
->>>>>>> b9a6fd1501be77e732d6b67d026830cb33ba79e1
+
 		<dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
             <version>2.23.0</version>
             <scope>test</scope>
         </dependency>
-<<<<<<< HEAD
-=======
-        
->>>>>>> b9a6fd1501be77e732d6b67d026830cb33ba79e1
+
        <!-- https://mvnrepository.com/artifact/log4j/log4j -->
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
 		</dependency>
-<<<<<<< HEAD
+
 		<!-- https://search.maven.org/remotecontent?filepath=commons-codec/commons-codec/1.12/commons-codec-1.12.jar -->
 		<dependency>
 		    <groupId>commons-codec</groupId>
 		    <artifactId>commons-codec</artifactId>
 		    <version>1.12</version>
 		</dependency>
-=======
->>>>>>> b9a6fd1501be77e732d6b67d026830cb33ba79e1
+
 
 	</dependencies>
 </project>
