@@ -10,6 +10,10 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 
+	<build>
+		<finalName>revvit</finalName>
+	</build>
+
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
 		<dependency>
@@ -17,14 +21,14 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>5.2.3.RELEASE</version>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<version>5.2.3.RELEASE</version>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
 		<dependency>
 		    <groupId>org.springframework</groupId>
@@ -53,7 +57,7 @@
 			<artifactId>postgresql</artifactId>
 			<version>42.2.9</version>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
 		<dependency>
 		    <groupId>commons-dbcp</groupId>
@@ -67,13 +71,13 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>5.4.10.Final</version>
 		</dependency>
-		
+
 		<dependency>
 		    <groupId>org.aspectj</groupId>
 		    <artifactId>aspectjweaver</artifactId>
 		    <version>1.9.5</version>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/org.twitter4j/twitter4j-core -->
 		<dependency>
 		  <groupId>org.twitter4j</groupId>
@@ -81,7 +85,7 @@
 		  <version>4.0.7</version>
 		</dependency>
 
-		
+
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
 
 		<dependency>
